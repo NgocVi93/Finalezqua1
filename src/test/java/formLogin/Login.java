@@ -30,7 +30,7 @@ import static com.thoughtworks.selenium.SeleneseTestCase.assertNotEquals;
 /**
  * Created by sysadmin on 5/29/17.
  */
-public class Login {
+public class  {
     AndroidDriver driver;
 
 
@@ -67,7 +67,7 @@ public class Login {
     String screenSignIn = driver.currentActivity();
 
      //So sánh để kiểm tra có chuyển màn hình hay không
-        assertNotEquals(currentScreen, screenSignIn);
+      //  assertNotEquals(currentScreen, screenSignIn);
 
      //Nhập user name
      driver.findElementById("ezqua.dfm.com.prototype:id/txtUsername").sendKeys("");
@@ -79,7 +79,7 @@ public class Login {
       driver.findElementById("ezqua.dfm.com.prototype:id/btnLogin").click();
       //String screenSignIn = driver.currentActivity();
       // assertNotEquals(currentScreen, screenSignIn);
-     //  WebDriverWait wait = new WebDriverWait(driver, 30);
+       WebDriverWait wait = new WebDriverWait(driver, 10);
 
       System.out.print("Pass test case 1");
 
