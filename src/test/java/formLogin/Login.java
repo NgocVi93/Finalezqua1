@@ -167,7 +167,7 @@ public class Login {
     @Test(priority =5)
     public void TestABC() throws InterruptedException  {
         String currentScreen = driver.currentActivity();
-
+//10
 
     }
     @AfterTest
