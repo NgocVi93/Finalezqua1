@@ -53,73 +53,67 @@ public class Login {
 
     }
 
-    /**
-     * @Test(priority = 1) // priority để ưu tiên case nào chạy trước
-     * // case này mình test trường không nhập uSername & password
-     * public void SignInWithAccountNull() {
-     * System.out.println(driver.currentActivity());
-     * <p>
-     * // Lấy Activity của màn hình hiện tại
-     * //   String currentScreen = driver.currentActivity();
-     * <p>
-     * <p>
-     * //  driver.findElementById("vn.com.misa.sothuchi:id/btnIntroLogin").click();
-     * <p>
-     * //  String screenSignIn = driver.currentActivity();
-     * <p>
-     * // So sánh để kiểm tra có chuyển màn hình hay không
-     * //    assertNotEquals(currentScreen, screenSignIn);
-     * <p>
-     * // Nhập user name
-     * driver.findElementById("ezqua.dfm.com.prototype:id/txtUsername").sendKeys("");
-     * <p>
-     * // Nhập mật khẩu
-     * driver.findElementById("ezqua.dfm.com.prototype:id/txtPassword").sendKeys("");
-     * <p>
-     * // Nhấn nút sign in
-     * driver.findElementById("ezqua.dfm.com.prototype:id/btnLogin").click();
-     * //String screenSignIn = driver.currentActivity();
-     * // assertNotEquals(currentScreen, screenSignIn);
-     * //  WebDriverWait wait = new WebDriverWait(driver, 30);
-     * <p>
-     * System.out.print("Pass test case 1");
-     * <p>
-     * }
-     * @Test(priority =2)
-     * public void SignUP() throws InterruptedException {
-     * //ten dang nhap: ezqua.dfm.com.prototype:id/edtUsername
-     * // mk:ezqua.dfm.com.prototype:id/edtPassword
-     * //nhap lai mk: ezqua.dfm.com.prototype:id/edtRePassword
-     * //email: ezqua.dfm.com.prototype:id/edtEmail
-     * // button đăng kí: ezqua.dfm.com.prototype:id/btnReg
-     * <p>
-     * System.out.println(driver.currentActivity());
-     * String currentScreen = driver.currentActivity();
-     * <p>
-     * <p>
-     * //chuyen qua man hinh Reg
-     * driver.findElementById("ezqua.dfm.com.prototype:id/tvRegister").click();
-     * // fill đay đu các textbox
-     * <p>
-     * driver.findElementById("ezqua.dfm.com.prototype:id/edtUsername").sendKeys("v");
-     * driver.findElementById("ezqua.dfm.com.prototype:id/edtPassword").sendKeys("");
-     * driver.findElementById("ezqua.dfm.com.prototype:id/edtRePassword").sendKeys("");
-     * driver.findElementById("ezqua.dfm.com.prototype:id/edtEmail").sendKeys("");
-     * <p>
-     * // So sanh 2 màn h
-     * //Click button dang kyinh & so sanh 2 man hinh
-     * try {
-     * driver.findElementById("ezqua.dfm.com.prototype:id/btnReg").click();
-     * System.out.print("ok passed SignUP");
-     * <p>
-     * <p>
-     * } catch (Exception a) {
-     * System.out.print("error case 3. Chưa chuyển màn hình được.");
-     * <p>
-     * }
-     * ;
-     * }
-     */
+
+      @Test(priority = 2) // priority để ưu tiên case nào chạy trước
+      // case này mình test trường không nhập uSername & password
+      public void SignInWithAccountNull() {
+      System.out.println(driver.currentActivity());
+
+      // Lấy Activity của màn hình hiện tại
+        String currentScreen = driver.currentActivity();
+
+
+
+    String screenSignIn = driver.currentActivity();
+
+     //So sánh để kiểm tra có chuyển màn hình hay không
+        assertNotEquals(currentScreen, screenSignIn);
+
+     //Nhập user name
+     driver.findElementById("ezqua.dfm.com.prototype:id/txtUsername").sendKeys("");
+
+     // Nhập mật khẩu
+      driver.findElementById("ezqua.dfm.com.prototype:id/txtPassword").sendKeys("");
+
+      // Nhấn nút sign in
+      driver.findElementById("ezqua.dfm.com.prototype:id/btnLogin").click();
+      //String screenSignIn = driver.currentActivity();
+      // assertNotEquals(currentScreen, screenSignIn);
+     //  WebDriverWait wait = new WebDriverWait(driver, 30);
+
+      System.out.print("Pass test case 1");
+
+      }
+      @Test(priority =1)
+      public void SignUP() throws InterruptedException {
+
+      System.out.println(driver.currentActivity());
+      String currentScreen = driver.currentActivity();
+
+
+      //chuyen qua man hinh Reg
+      driver.findElementById("ezqua.dfm.com.prototype:id/tvRegister").click();
+      // fill đay đu các textbox
+
+      driver.findElementById("ezqua.dfm.com.prototype:id/edtUsername").sendKeys("v");
+      driver.findElementById("ezqua.dfm.com.prototype:id/edtPassword").sendKeys("");
+      driver.findElementById("ezqua.dfm.com.prototype:id/edtRePassword").sendKeys("");
+      driver.findElementById("ezqua.dfm.com.prototype:id/edtEmail").sendKeys("");
+
+      // So sanh 2 màn h
+      //Click button dang kyinh & so sanh 2 man hinh
+      try {
+      driver.findElementById("ezqua.dfm.com.prototype:id/btnReg").click();
+      System.out.print("ok passed SignUP");
+
+
+      } catch (Exception a) {
+      System.out.print("error case 3. Chưa chuyển màn hình được.");
+
+      }
+
+      }
+
     @Test(priority = 3)
     //  case này mình test trường hợp đăng nhập với account đúng
     public void SignInWithcorrectAccount() throws InterruptedException {
