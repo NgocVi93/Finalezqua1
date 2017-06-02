@@ -30,7 +30,7 @@ import static com.thoughtworks.selenium.SeleneseTestCase.assertNotEquals;
 /**
  * Created by sysadmin on 5/29/17.
  */
-public class  {
+public class Login {
     AndroidDriver driver;
 
 
@@ -164,10 +164,16 @@ public class  {
     }
 
 
+    @Test(priority =5)
+    public void TestABC() throws InterruptedException  {
+        String currentScreen = driver.currentActivity();
+
+
+    }
     @AfterTest
     public void afterTest() {
         // thoát sau khi chạy hết test case
-        // driver.quit();
+        driver.quit();
 
     }
 }
