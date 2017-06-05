@@ -54,13 +54,14 @@ public class Login {
         // khai báo platform
         cap.setCapability(CapabilityType.VERSION, "5.0.0");
         // khai báo deviceName
+        // cap.setCapability("deviceName", "HT33SW900762");
         cap.setCapability("deviceName", "192.168.56.101:5555");
         driver = new AndroidDriver(new URL("http://127.0.0.1:4723/wd/hub"), cap);
 
     }
 
 
-      @Test(priority = 2) // priority để ưu tiên case nào chạy trước
+      @Test(priority = 2)
       // case này mình test trường không nhập uSername & password
       public void SignInWithAccountNull() {
       System.out.println(driver.currentActivity());
@@ -97,18 +98,16 @@ public class Login {
       String currentScreen = driver.currentActivity();
 
 
-      //chuyen qua man hinh Reg
+          try {
       driver.findElementById("ezqua.dfm.com.prototype:id/tvRegister").click();
       // fill đay đu các textbox
 
-      driver.findElementById("ezqua.dfm.com.prototype:id/edtUsername").sendKeys("v");
+      driver.findElementById("ezqua.dfm.com.prototype:id/edtUsername").sendKeys("vipham");
       driver.findElementById("ezqua.dfm.com.prototype:id/edtPassword").sendKeys("");
       driver.findElementById("ezqua.dfm.com.prototype:id/edtRePassword").sendKeys("");
       driver.findElementById("ezqua.dfm.com.prototype:id/edtEmail").sendKeys("");
 
-      // So sanh 2 màn h
-      //Click button dang kyinh & so sanh 2 man hinh
-      try {
+
       driver.findElementById("ezqua.dfm.com.prototype:id/btnReg").click();
       System.out.print("ok passed SignUP");
 
@@ -158,6 +157,7 @@ public class Login {
 
             driver.findElementById("ezqua.dfm.com.prototype:id/btnDrawer").click();
             driver.findElementById("ezqua.dfm.com.prototype:id/main_btnInven").click();
+            driver. navigate().refresh();
 
 
             // String TraoDoi = driver.currentActivity();
@@ -179,24 +179,7 @@ public class Login {
 //10
 
     }
-/*
-    private static boolean capture(String fileName){
-        try {
 
-            WebDriver dr = Monitor.getM().getDriver();
-            File f = new File(fileName+".jpg");
-            File oFile = ((TakesScreenshot) dr).getScreenshotAs(OutputType.FILE);
-            BufferedImage image = ImageIO.read(oFile);
-            ImageIO.write(image, "jpg", f);
-
-            return true;
-        } catch (Exception e) {
-            e.printStackTrace();
-
-            return false;
-        }
-    }
-    */
     @AfterTest
     public void afterTest() {
         // thoát sau khi chạy hết test case
