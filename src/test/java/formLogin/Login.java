@@ -7,6 +7,10 @@ import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.android.AndroidDriver;
 import javafx.scene.layout.Priority;
 import org.openqa.selenium.By;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
+import java.awt.image.BufferedImage;
+import javax.imageio.ImageIO;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.remote.CapabilityType;
@@ -17,6 +21,8 @@ import org.testng.Assert;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
+
+import javax.management.monitor.Monitor;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.BufferedInputStream;
@@ -167,9 +173,30 @@ public class Login {
     @Test(priority =5)
     public void TestABC() throws InterruptedException  {
         String currentScreen = driver.currentActivity();
+
+       // driver. navigate().refresh();
+
 //10
 
     }
+/*
+    private static boolean capture(String fileName){
+        try {
+
+            WebDriver dr = Monitor.getM().getDriver();
+            File f = new File(fileName+".jpg");
+            File oFile = ((TakesScreenshot) dr).getScreenshotAs(OutputType.FILE);
+            BufferedImage image = ImageIO.read(oFile);
+            ImageIO.write(image, "jpg", f);
+
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+
+            return false;
+        }
+    }
+    */
     @AfterTest
     public void afterTest() {
         // thoát sau khi chạy hết test case
