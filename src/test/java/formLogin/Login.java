@@ -1,5 +1,6 @@
 package formLogin;
 
+import static com.thoughtworks.selenium.SeleneseTestCase.seleniumEquals;
 import static org.testng.Assert.assertEquals;
 
 import com.sun.jna.platform.win32.OaIdl;
@@ -12,6 +13,8 @@ import org.openqa.selenium.TakesScreenshot;
 import java.awt.image.BufferedImage;
 import javax.imageio.ImageIO;
 import org.openqa.selenium.WebDriver;
+
+import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.remote.CapabilityType;
 import org.openqa.selenium.remote.DesiredCapabilities;
@@ -54,14 +57,13 @@ public class Login {
         // khai báo platform
         cap.setCapability(CapabilityType.VERSION, "5.0.0");
         // khai báo deviceName
-        // cap.setCapability("deviceName", "HT33SW900762");
         cap.setCapability("deviceName", "192.168.56.101:5555");
         driver = new AndroidDriver(new URL("http://127.0.0.1:4723/wd/hub"), cap);
 
     }
 
 
-      @Test(priority = 2)
+   /*   @Test(priority = 2)
       // case này mình test trường không nhập uSername & password
       public void SignInWithAccountNull() {
       System.out.println(driver.currentActivity());
@@ -102,7 +104,7 @@ public class Login {
       driver.findElementById("ezqua.dfm.com.prototype:id/tvRegister").click();
       // fill đay đu các textbox
 
-      driver.findElementById("ezqua.dfm.com.prototype:id/edtUsername").sendKeys("vipham");
+      driver.findElementById("ezqua.dfm.com.prototype:id/edtUsername").sendKeys("abcd");
       driver.findElementById("ezqua.dfm.com.prototype:id/edtPassword").sendKeys("");
       driver.findElementById("ezqua.dfm.com.prototype:id/edtRePassword").sendKeys("");
       driver.findElementById("ezqua.dfm.com.prototype:id/edtEmail").sendKeys("");
@@ -127,7 +129,7 @@ public class Login {
 
         // Nhập user name
         driver.findElementById("ezqua.dfm.com.prototype:id/txtUsername").clear();
-        driver.findElementById("ezqua.dfm.com.prototype:id/txtUsername").sendKeys("v");
+        driver.findElementById("ezqua.dfm.com.prototype:id/txtUsername").sendKeys("aaaa");
 
         // Nhập mật khẩu
         driver.findElementById("ezqua.dfm.com.prototype:id/txtPassword").clear();
@@ -169,12 +171,45 @@ public class Login {
         }
     }
 
-
+*/
     @Test(priority =5)
     public void TestABC() throws InterruptedException  {
         String currentScreen = driver.currentActivity();
 
+        String screenSignIn = driver.currentActivity();
+
+
+        //Nhập user name
+        driver.findElementById("ezqua.dfm.com.prototype:id/txtUsername").sendKeys("vipham");
+
+        // Nhập mật khẩu
+        driver.findElementById("ezqua.dfm.com.prototype:id/txtPassword").sendKeys("");
+
+        // Nhấn nút sign in
+        driver.findElementById("ezqua.dfm.com.prototype:id/btnLogin").click();
+
+        System.out.print("Passed Login");
+
+        driver.findElementById("ezqua.dfm.com.prototype:id/btnDrawer").click();
+
+        driver.findElementById("ezqua.dfm.com.prototype:id/main_btnPersonal").click();
+
+        driver.findElementById("ezqua.dfm.com.prototype:id/tvStatus").click();
+        driver.findElementById("ezqua.dfm.com.prototype:id/edtChat").sendKeys("abc");
+
+        driver.findElementById("ezqua.dfm.com.prototype:id/btnSend").click();
+
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+
+
        // driver. navigate().refresh();
+
+        String message = driver.findElementById("ezqua.dfm.com.prototype:id/txtChatMess").getText();
+
+
+
+        assertEquals(message, "abc", "passed");
+
 
 //10
 
