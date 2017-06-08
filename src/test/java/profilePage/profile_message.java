@@ -1,9 +1,11 @@
-package formLogin;
+package profilePage;
 import static com.thoughtworks.selenium.SeleneseTestCase.seleniumEquals;
+import static junit.framework.Assert.failNotSame;
 import static org.testng.Assert.assertEquals;
 
 import com.sun.jna.platform.win32.OaIdl;
 import io.appium.java_client.AppiumDriver;
+import io.appium.java_client.MobileElement;
 import io.appium.java_client.android.AndroidDriver;
 import javafx.scene.layout.Priority;
 import org.openqa.selenium.*;
@@ -38,7 +40,7 @@ import static com.thoughtworks.selenium.SeleneseTestCase.assertNotEquals;
 /**
  * Created by sysadmin on 6/5/17.
  */
-public class Profile {
+public class profile_message {
     AndroidDriver driver;
 
 
@@ -62,7 +64,7 @@ public class Profile {
     }
 
     @Test(priority =1)
-    public void testGetMessage() throws InterruptedException  {
+    public void testGetMessage() throws InterruptedException {
         String currentScreen = driver.currentActivity();
 
         String screenSignIn = driver.currentActivity();
@@ -82,28 +84,36 @@ public class Profile {
         driver.findElementById("ezqua.dfm.com.prototype:id/main_btnPersonal").click();
 
 
+        Thread.sleep(5000);
 
 
         driver.findElementById("ezqua.dfm.com.prototype:id/tvStatus").click();
-        driver.findElementById("ezqua.dfm.com.prototype:id/edtChat").sendKeys("abcd");
+        driver.findElementById("ezqua.dfm.com.prototype:id/edtChat").sendKeys("abdr");
 
         driver.findElementById("ezqua.dfm.com.prototype:id/btnSend").click();
 
 
+        //   driver. navigate().back();
 
-         driver. navigate().back();
-      //  String message = driver.findElementById("ezqua.dfm.com.prototype:id/txtChatMess").getText();
+        List<MobileElement> eles=driver.findElementsById("ezqua.dfm.com.prototype:id/txtChatMess");
 
-        //assertEquals(message, "abcdef");
-    }
-    @Test(priority = 2)
-    public void TestScreens() throws InterruptedException
+
+        for (int i = 0; i <eles.size(); i++) {
+            String s;
+
+
+            assertEquals(eles.get(6).getText(), "abdr","Passed");
+
+        }
+
+   /* @Test(priority = 2)
+    public void TestScreens() throws InterruptedEixception
     {
         try
         {
             String currentScreen = driver.currentActivity();
             driver.findElementById("ezqua.dfm.com.prototype:id/edtNewFeedAdd").click();
-            driver.findElementById("ezqua.dfm.com.prototype:id/edtNewFeedAdd").sendKeys("Auto fill from intelli");
+            driver.findElementById("ezqua.dfm.com.prototype:id/edtNewFeedAdd").sendKeys("Auto fill from intellij ");
 
             driver.findElementById("ezqua.dfm.com.prototype:id/btnAddNewFeed").click();
 
@@ -116,18 +126,20 @@ public class Profile {
             // String TraoDoi = driver.currentActivity();
 
             //  assertNotEquals(currentScreen, TraoDoi);
-            System.out.print("Passed Test Case 4. Các mand hình");
+            System.out.print("Passed Test Case 4. Các man hình");
         }
             catch (Exception a)
          {
             System.out.print("Failed");
-         }
+
+         }*/
     }
+
     @AfterTest
     public void afterTest()
     {
 
-       // driver.quit();
+        driver.quit();
 
     }
 }
