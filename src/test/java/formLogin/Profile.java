@@ -6,15 +6,13 @@ import com.sun.jna.platform.win32.OaIdl;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.android.AndroidDriver;
 import javafx.scene.layout.Priority;
-import org.openqa.selenium.By;
-import org.openqa.selenium.OutputType;
-import org.openqa.selenium.TakesScreenshot;
+import org.openqa.selenium.*;
+
 import java.awt.image.BufferedImage;
 import javax.imageio.ImageIO;
-import org.openqa.selenium.WebDriver;
+
 
 import org.openqa.selenium.support.ui.Select;
-import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.remote.CapabilityType;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -25,12 +23,14 @@ import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
 import javax.management.monitor.Monitor;
+import javax.xml.bind.Element;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.BufferedInputStream;
 import java.io.FileNotFoundException;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.List;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
 import static com.thoughtworks.selenium.SeleneseTestCase.assertNotEquals;
@@ -62,7 +62,7 @@ public class Profile {
     }
 
     @Test(priority =1)
-    public void TestABC() throws InterruptedException  {
+    public void testGetMessage() throws InterruptedException  {
         String currentScreen = driver.currentActivity();
 
         String screenSignIn = driver.currentActivity();
@@ -85,30 +85,22 @@ public class Profile {
 
 
         driver.findElementById("ezqua.dfm.com.prototype:id/tvStatus").click();
-        driver.findElementById("ezqua.dfm.com.prototype:id/edtChat").sendKeys("abcdef");
+        driver.findElementById("ezqua.dfm.com.prototype:id/edtChat").sendKeys("abcd");
 
         driver.findElementById("ezqua.dfm.com.prototype:id/btnSend").click();
 
 
 
-        // driver. navigate().refresh();
+         driver. navigate().back();
+      //  String message = driver.findElementById("ezqua.dfm.com.prototype:id/txtChatMess").getText();
 
-        String message = driver.findElementById("ezqua.dfm.com.prototype:id/txtChatMess").getText();
-        for(int i=0;i<=message.length();i++)
-        {
-        assertEquals(message, "abcdef");
-
-      //  System.out.print(message());
-
-        }
-
-
-//10
-
+        //assertEquals(message, "abcdef");
     }
     @Test(priority = 2)
-    public void TestScreens() throws InterruptedException {
-        try {
+    public void TestScreens() throws InterruptedException
+    {
+        try
+        {
             String currentScreen = driver.currentActivity();
             driver.findElementById("ezqua.dfm.com.prototype:id/edtNewFeedAdd").click();
             driver.findElementById("ezqua.dfm.com.prototype:id/edtNewFeedAdd").sendKeys("Auto fill from intelli");
@@ -125,14 +117,17 @@ public class Profile {
 
             //  assertNotEquals(currentScreen, TraoDoi);
             System.out.print("Passed Test Case 4. Các mand hình");
-        } catch (Exception a) {
-            System.out.print("Failed");
         }
+            catch (Exception a)
+         {
+            System.out.print("Failed");
+         }
     }
     @AfterTest
-    public void afterTest() {
-        // thoát sau khi chạy hết test case
-        driver.quit();
+    public void afterTest()
+    {
+
+       // driver.quit();
 
     }
 }
