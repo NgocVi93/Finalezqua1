@@ -59,12 +59,14 @@ public class profile_message {
         cap.setCapability(CapabilityType.VERSION, "5.0.0");
         // khai báo deviceName
         cap.setCapability("deviceName", "192.168.56.101:5555");
-        driver = new AndroidDriver(new URL("http://127.0.0.1:4723/wd/hub"), cap);
+         driver = new AndroidDriver(new URL("http://0.0.0.0:4723/wd/hub"), cap);
 
     }
 
+
+
     @Test(priority =1)
-    public void testGetMessage() throws InterruptedException {
+    public void testCheckMessage() throws InterruptedException {
         String currentScreen = driver.currentActivity();
 
         String screenSignIn = driver.currentActivity();
@@ -84,7 +86,7 @@ public class profile_message {
         driver.findElementById("ezqua.dfm.com.prototype:id/main_btnPersonal").click();
 
 
-        Thread.sleep(5000);
+
 
 
         driver.findElementById("ezqua.dfm.com.prototype:id/tvStatus").click();
@@ -93,47 +95,40 @@ public class profile_message {
         driver.findElementById("ezqua.dfm.com.prototype:id/btnSend").click();
 
 
+
         //   driver. navigate().back();
 
-        List<MobileElement> eles=driver.findElementsById("ezqua.dfm.com.prototype:id/txtChatMess");
+        List<MobileElement> eles = driver.findElementsById("ezqua.dfm.com.prototype:id/txtChatMess");
 
 
-        for (int i = 0; i <eles.size(); i++) {
+        for (int i = 0; i < eles.size(); i++) {
             String s;
 
 
-            assertEquals(eles.get(6).getText(), "abdr","Passed");
+            assertEquals(eles.get(i).getText(), "abdr", "Passed");
 
         }
 
-   /* @Test(priority = 2)
-    public void TestScreens() throws InterruptedEixception
-    {
-        try
-        {
-            String currentScreen = driver.currentActivity();
-            driver.findElementById("ezqua.dfm.com.prototype:id/edtNewFeedAdd").click();
-            driver.findElementById("ezqua.dfm.com.prototype:id/edtNewFeedAdd").sendKeys("Auto fill from intellij ");
 
-            driver.findElementById("ezqua.dfm.com.prototype:id/btnAddNewFeed").click();
-
-
-            driver.findElementById("ezqua.dfm.com.prototype:id/btnDrawer").click();
-            driver.findElementById("ezqua.dfm.com.prototype:id/main_btnInven").click();
-            driver. navigate().refresh();
-
-
-            // String TraoDoi = driver.currentActivity();
-
-            //  assertNotEquals(currentScreen, TraoDoi);
-            System.out.print("Passed Test Case 4. Các man hình");
-        }
-            catch (Exception a)
-         {
-            System.out.print("Failed");
-
-         }*/
     }
+ /*   @Test(priority =2)
+    public void addFriends() throws InterruptedException {
+        String currentScreen = driver.currentActivity();
+
+        driver.navigate().back();
+        driver.findElementById("ezqua.dfm.com.prototype:id/btnDrawer").click();
+
+        driver.findElementById("ezqua.dfm.com.prototype:id/main_btnPersonal").click();
+        driver.findElementByClassName("android.widget.ImageButton").click();
+        driver.findElementByClassName("android.widget.EditText").sendKeys("0987476321");
+        driver.findElementByClassName("android.widget.Button").click();
+
+
+
+    }
+    */
+
+
 
     @AfterTest
     public void afterTest()
