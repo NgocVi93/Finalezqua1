@@ -90,7 +90,7 @@ public class profile_message {
 
 
         driver.findElementById("ezqua.dfm.com.prototype:id/tvStatus").click();
-        driver.findElementById("ezqua.dfm.com.prototype:id/edtChat").sendKeys("abdr");
+        driver.findElementById("ezqua.dfm.com.prototype:id/edtChat").sendKeys("drfe");
 
         driver.findElementById("ezqua.dfm.com.prototype:id/btnSend").click();
 
@@ -98,16 +98,17 @@ public class profile_message {
 
         //   driver. navigate().back();
 
-        List<MobileElement> eles = driver.findElementsById("ezqua.dfm.com.prototype:id/txtChatMess");
+        List<MobileElement> listMessage = driver.findElementsById("ezqua.dfm.com.prototype:id/txtChatMess");
 
 
-        for (int i = 0; i < eles.size(); i++) {
-            String s;
-
-
-            assertEquals(eles.get(i).getText(), "abdr", "Passed");
+        for (int i = 0; i < listMessage.size(); i++) {
+            String s=listMessage.get(i).getText();
+            assertEquals(s, "drfe", "Passed");
+            i++;
 
         }
+
+
 
 
     }
