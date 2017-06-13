@@ -51,14 +51,24 @@ public class profile_message {
     @BeforeTest
     public void beforeTest() throws MalformedURLException {
         DesiredCapabilities cap = new DesiredCapabilities();
-        cap.setCapability("appActivity", "ezqua.dfm.com.prototype.activity.LoginActivity");
-        cap.setCapability("appWaitActivity", "ezqua.dfm.com.prototype.activity.LoginActivity', ezqua.dfm.com.prototype.activity.LoginActivity");
+        //Máy ảo
+ //       cap.setCapability("appActivity", "ezqua.dfm.com.prototype.activity.LoginActivity");
+   //     cap.setCapability("appWaitActivity", "ezqua.dfm.com.prototype.activity.LoginActivity', ezqua.dfm.com.prototype.activity.LoginActivity");
 
         cap.setCapability("app", Ezqua);
         // khai báo platform
-        cap.setCapability(CapabilityType.VERSION, "5.0.0");
+        //cap.setCapability(CapabilityType.VERSION, "5.0.0");
         // khai báo deviceName
-        cap.setCapability("deviceName", "192.168.56.101:5555");
+       // cap.setCapability("deviceName", "192.168.56.101:5555");dùng
+
+
+        //Máy thật dùng
+       // cap.setCapability("appActivity", "ezqua.dfm.com.prototype.activity.LoginActivity");
+            cap.setCapability("appWaitActivity", "ezqua.dfm.com.prototype.activity.LoginActivity',ezqua.dfm.com.prototype.activity.LoginActivity");
+        cap.setCapability(CapabilityType.VERSION, "6.0.1");
+        // khai báo deviceName
+        cap.setCapability("deviceName", "3300a7537024b357");
+
          driver = new AndroidDriver(new URL("http://0.0.0.0:4723/wd/hub"), cap);
 
     }
@@ -81,8 +91,17 @@ public class profile_message {
         // Nhấn nút sign in
         driver.findElementById("ezqua.dfm.com.prototype:id/btnLogin").click();
 
-        driver.findElementById("ezqua.dfm.com.prototype:id/btnDrawer").click();
 
+
+
+        //Click allow access photo, media and f
+        driver.findElementById("com.android.packageinstaller:id/permission_allow_button").click();
+        //permission_deny_button
+        Thread.sleep(4000);
+        //Allow access take pictures
+            driver.findElementById("com.android.packageinstaller:id/permission_allow_button").click();
+
+        driver.findElementById("ezqua.dfm.com.prototype:id/btnDrawer").click();
         driver.findElementById("ezqua.dfm.com.prototype:id/main_btnPersonal").click();
 
 
@@ -90,7 +109,7 @@ public class profile_message {
 
 
         driver.findElementById("ezqua.dfm.com.prototype:id/tvStatus").click();
-        driver.findElementById("ezqua.dfm.com.prototype:id/edtChat").sendKeys("drfe");
+        driver.findElementById("ezqua.dfm.com.prototype:id/edtChat").sendKeys("0154335");
 
         driver.findElementById("ezqua.dfm.com.prototype:id/btnSend").click();
 
@@ -102,32 +121,36 @@ public class profile_message {
 
 
         for (int i = 0; i < listMessage.size(); i++) {
-            String s=listMessage.get(i).getText();
-            assertEquals(s, "drfe", "Passed");
-            i++;
+            String s = listMessage.get(i).getText();
+            if(s!="0154335")
+               i++;
+            else if(s=="0154335")
+            {
+                assertEquals(s,"0154335","Passed");
+            }
+
+            else
+            {
+                System.out.println("Failed");
+            }
+
 
         }
 
-
-
-
     }
- /*   @Test(priority =2)
+    @Test(priority =2)
     public void addFriends() throws InterruptedException {
         String currentScreen = driver.currentActivity();
 
         driver.navigate().back();
-        driver.findElementById("ezqua.dfm.com.prototype:id/btnDrawer").click();
-
-        driver.findElementById("ezqua.dfm.com.prototype:id/main_btnPersonal").click();
-        driver.findElementByClassName("android.widget.ImageButton").click();
+        driver.findElementById("ezqua.dfm.com.prototype:id/fabContactPersonAdd").click();
         driver.findElementByClassName("android.widget.EditText").sendKeys("0987476321");
         driver.findElementByClassName("android.widget.Button").click();
 
 
 
     }
-    */
+
 
 
 
