@@ -1,4 +1,0 @@
-language: java
-  email: false
-server:
-- appium
