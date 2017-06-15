@@ -186,7 +186,7 @@ public class profile_message {
 
         driver.findElementById("ezqua.dfm.com.prototype:id/btnSend").click();
 
-
+//hihi
     }
     /*
     @Test(priority =2)
