@@ -59,23 +59,23 @@ public class profile_message {
     public void beforeTest() throws MalformedURLException {
         DesiredCapabilities cap = new DesiredCapabilities();
         //Máy ảo
-        cap.setCapability("appActivity", "ezqua.dfm.com.prototype.activity.LoginActivity");
-        cap.setCapability("appWaitActivity", "ezqua.dfm.com.prototype.activity.LoginActivity', ezqua.dfm.com.prototype.activity.LoginActivity");
+      //  cap.setCapability("appActivity", "ezqua.dfm.com.prototype.activity.LoginActivity");
+       // cap.setCapability("appWaitActivity", "ezqua.dfm.com.prototype.activity.LoginActivity', ezqua.dfm.com.prototype.activity.LoginActivity");
 
         cap.setCapability("app", Ezqua);
         // khai báo platform
-        cap.setCapability(CapabilityType.VERSION, "5.0.0");
+    //    cap.setCapability(CapabilityType.VERSION, "5.0.0");
         // khai báo deviceName
-       cap.setCapability("deviceName", "192.168.56.101:5555");
+   //    cap.setCapability("deviceName", "192.168.56.101:5555");
 
 
-        /*Máy thật dùng
+        //Máy thật dùng
        // cap.setCapability("appActivity", "ezqua.dfm.com.prototype.activity.LoginActivity");
             cap.setCapability("appWaitActivity", "ezqua.dfm.com.prototype.activity.LoginActivity',ezqua.dfm.com.prototype.activity.LoginActivity");
         cap.setCapability(CapabilityType.VERSION, "6.0.1");
         // khai báo deviceName
         cap.setCapability("deviceName", "3300a7537024b357");
-        */
+
 
          driver = new AndroidDriver(new URL("http://0.0.0.0:4723/wd/hub"), cap);
 
@@ -103,11 +103,11 @@ public class profile_message {
 
 
         //Click allow access photo, media and f
- //       driver.findElementById("com.android.packageinstaller:id/permission_allow_button").click();
+        driver.findElementById("com.android.packageinstaller:id/permission_allow_button").click();
         //permission_deny_button
         Thread.sleep(4000);
         //Allow access take pictures
-  //          driver.findElementById("com.android.packageinstaller:id/permission_allow_button").click();
+           driver.findElementById("com.android.packageinstaller:id/permission_allow_button").click();
 
         driver.findElementById("ezqua.dfm.com.prototype:id/btnDrawer").click();
         driver.findElementById("ezqua.dfm.com.prototype:id/main_btnPersonal").click();
@@ -125,7 +125,7 @@ public class profile_message {
 
         for (int i = 0; i < listMessage.size(); i++) {
             String s = listMessage.get(i).getText();
-            String expected="hihihehe";
+            String expected="hello";
             System.out.println(s);
 
           //  assertEquals(s,"abc");
@@ -136,7 +136,7 @@ public class profile_message {
             else
                 System.out.println("Failed "+" vi tri "+i+"\n");
 
-
+//test
         }
 
     }
@@ -167,9 +167,8 @@ public class profile_message {
     public void CheckCaseSendTextAndemoji() throws InterruptedException
     {
 
-        driver.findElementById("ezqua.dfm.com.prototype:id/tvStatus").click();
+
         driver.findElementById("ezqua.dfm.com.prototype:id/edtChat").sendKeys("Send Text & Emoji");
-        driver.findElementById("ezqua.dfm.com.prototype:id/btnSend").click();
 
         int x = driver.findElement(MobileBy.id("ezqua.dfm.com.prototype:id/emojicon_icon")).getLocation().getX();
         int y = driver.findElement(MobileBy.id("ezqua.dfm.com.prototype:id/emojicon_icon")).getLocation().getY();
@@ -186,7 +185,46 @@ public class profile_message {
 
         driver.findElementById("ezqua.dfm.com.prototype:id/btnSend").click();
 
-//hihi
+
+    }
+    //Send image
+    @Test(priority = 4)
+    public void CheckCaseSendImage() throws InterruptedException
+    {
+
+        driver.findElementById("ezqua.dfm.com.prototype:id/btnChatImg").click();
+        int x = driver.findElement(MobileBy.id("ezqua.dfm.com.prototype:id/btnChatImg")).getLocation().getX();
+        int y = driver.findElement(MobileBy.id("ezqua.dfm.com.prototype:id/btnChatImg")).getLocation().getY();
+
+        MultiTouchAction multiTouch = new MultiTouchAction(driver);
+        TouchAction action1 = new TouchAction(driver);
+        TouchAction action2 = new TouchAction(driver);
+        TouchAction action3 = new TouchAction(driver);
+        action1.press(x + 5, y + 5).waitAction(100).release(); //3.5sec for sure, 2 pixels inside el
+        action2.press(x + 300, y + 600).waitAction(1000).release(); //3.5sec for sure, 4 pixels inside el
+
+        multiTouch.add(action1).add(action2).perform();
+        Thread.sleep(4000);
+
+    }
+
+    @Test(priority = 5)
+    public void CheckSenGif() throws InterruptedException
+    {
+        driver.findElementById("ezqua.dfm.com.prototype:id/btnChatGift").click();
+        String title =driver.findElementById("ezqua.dfm.com.prototype:id/txtChatGiftTitleActionbar").getText();
+        String expectedTitle="Title";
+        if(title.equals(expectedTitle))
+        {
+            System.out.println("Passed "+"\n");
+        }
+        else
+            System.out.println("Failed "+"\n");
+
+
+
+
+
     }
     /*
     @Test(priority =2)
