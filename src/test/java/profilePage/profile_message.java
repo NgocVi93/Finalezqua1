@@ -227,7 +227,7 @@ public class profile_message {
 
     }
     /*
-    @Test(priority =2)
+    @Test(priority =6)
     public void addFriends() throws InterruptedException {
         String currentScreen = driver.currentActivity();
 
