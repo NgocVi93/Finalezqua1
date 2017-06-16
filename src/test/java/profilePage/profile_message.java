@@ -254,7 +254,9 @@ public class profile_message {
     @Test(priority=7)
     public void abc()throws InterruptedException{
         String currentScreen = driver.currentActivity();
+           driver.findElementById("ezqua.dfm.com.prototype:id/fabContactPersonAdd").click();
     }
+
      */
     @AfterTest
     public void afterTest()
