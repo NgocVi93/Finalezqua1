@@ -161,7 +161,7 @@ public class profile_message {
 
         driver.findElementById("ezqua.dfm.com.prototype:id/btnSend").click();
 
-
+//
     }
     @Test(priority =3)
     public void CheckCaseSendTextAndemoji() throws InterruptedException
