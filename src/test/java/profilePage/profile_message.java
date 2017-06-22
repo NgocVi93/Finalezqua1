@@ -17,7 +17,6 @@ import org.openqa.selenium.*;
 import java.awt.image.BufferedImage;
 import javax.imageio.ImageIO;
 
-
 import org.openqa.selenium.interactions.touch.TouchActions;
 import org.openqa.selenium.remote.RemoteWebElement;
 import org.openqa.selenium.support.ui.Select;
@@ -169,6 +168,7 @@ public class profile_message {
 
 
         driver.findElementById("ezqua.dfm.com.prototype:id/edtChat").sendKeys("Send Text & Emoji");
+        driver.findElementById("ezqua.dfm.com.prototype:id/btnChatImg").click();
 
         int x = driver.findElement(MobileBy.id("ezqua.dfm.com.prototype:id/emojicon_icon")).getLocation().getX();
         int y = driver.findElement(MobileBy.id("ezqua.dfm.com.prototype:id/emojicon_icon")).getLocation().getY();
